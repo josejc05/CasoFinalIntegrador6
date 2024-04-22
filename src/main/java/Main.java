@@ -1,5 +1,3 @@
-package main;
-
 import management.DataManager;
 import management.DataAnalyzer;
 import model.DataList;
@@ -49,5 +47,8 @@ public class Main {
 
         // Mostrar un mensaje al usuario
         userInterface.displayMessage("Fin del programa.");
+
+        // Mostrar el menú al usuario
+        userInterface.showMenu();
     }
 }
