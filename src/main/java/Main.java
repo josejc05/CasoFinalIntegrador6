@@ -1,15 +1,53 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+package main;
+
+import management.DataManager;
+import management.DataAnalyzer;
+import model.DataList;
+import model.Pair;
+import relation.RelationManager;
+import retrieval.DataRetriever;
+import sortsearch.DataSearcher;
+import sortsearch.DataSorter;
+import ui.UserInterface;
+
 public class Main {
     public static void main(String[] args) {
-        //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-        // to see how IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        DataManager dataManager = new DataManager();
+        DataAnalyzer dataAnalyzer = new DataAnalyzer();
+        DataList dataList = new DataList();
+        Pair pair = new Pair("key", "value");
+        RelationManager relationManager = new RelationManager();
+        DataRetriever dataRetriever = new DataRetriever();
+        DataSearcher dataSearcher = new DataSearcher();
+        DataSorter dataSorter = new DataSorter();
+        UserInterface userInterface = new UserInterface();
 
-        for (int i = 1; i <= 5; i++) {
-            //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-            // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-            System.out.println("i = " + i);
-        }
+        // Agregar datos a DataManager
+        dataManager.addData("dato1");
+        dataManager.addData("dato2");
+
+        // Analizar los datos en DataManager
+        dataAnalyzer.analyzeData(dataManager.getData());
+
+        // Agregar datos a DataList
+        dataList.addData("dato3");
+        dataList.addData("dato4");
+
+        // Agregar una relación a RelationManager
+        relationManager.addRelation(pair.getKey(), pair.getValue());
+
+        // Recuperar un dato de DataList
+        String retrievedData = dataRetriever.retrieveData(dataList.getDataList(), 0);
+        System.out.println("Dato recuperado: " + retrievedData);
+
+        // Buscar un dato en DataManager
+        int index = dataSearcher.searchData(dataManager.getData(), "dato1");
+        System.out.println("Índice del dato buscado: " + index);
+
+        // Ordenar los datos en DataManager
+        dataSorter.sortData(dataManager.getData());
+
+        // Mostrar un mensaje al usuario
+        userInterface.displayMessage("Fin del programa.");
     }
 }
