@@ -18,7 +18,7 @@ public class Main {
         DataRetriever dataRetriever = new DataRetriever();
         DataSearcher dataSearcher = new DataSearcher();
         DataSorter dataSorter = new DataSorter();
-        UserInterface userInterface = new UserInterface();
+        UserInterface userInterface = new UserInterface(dataManager, dataAnalyzer, dataList, dataRetriever, dataSearcher, dataSorter);
 
         // Agregar datos a DataManager
         dataManager.addData("dato1");
