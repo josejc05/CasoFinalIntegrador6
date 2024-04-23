@@ -18,9 +18,15 @@ public class DataAnalyzer {
                 .collect(Collectors.toList());
     }
 
+    public List<Pair> sortSalesByDate(List<Pair> data) {
+        return data.stream()
+                .sorted(Comparator.comparing(Pair::getDate))
+                .collect(Collectors.toList());
+    }
+
     public void analyzeData(List<Pair> data) {
         for (Pair datum : data) {
-            System.out.println("Data: " + datum.getKey() + ", Value: " + datum.getValue());
+            System.out.println("Data: " + datum.getKey() + ", Value: " + datum.getValue() + ", Date: " + datum.getDate());
         }
     }
 }
