@@ -3,15 +3,15 @@ package model;
 import java.util.List;
 
 public class Pair {
-    private String key;
+    private Object key;
     private List<Pair> value;
 
-    public Pair(String key, List<Pair> value) {
+    public Pair(Object key, List<Pair> value) {
         this.key = key;
         this.value = value;
     }
 
-    public String getKey() {
+    public Object getKey() {
         return this.key;
     }
 
@@ -19,7 +19,7 @@ public class Pair {
         return this.value;
     }
 
-    public void setKey(String key) {
+    public void setKey(Object key) {
         this.key = key;
     }
 
