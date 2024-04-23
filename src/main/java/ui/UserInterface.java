@@ -9,6 +9,8 @@ import retrieval.DataRetriever;
 import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
 
+import java.util.ArrayList;
+
 public class UserInterface {
     private DataManager dataManager;
     private DataAnalyzer dataAnalyzer;
@@ -42,7 +44,9 @@ public class UserInterface {
         switch (selection) {
             case 0:
                 String dataToAdd = getInput("Introduce los datos a agregar:");
-                dataManager.addData(new Pair(dataToAdd, new ArrayList<>()));
+                // Aquí puedes agregar lógica para solicitar al usuario los datos multidimensionales que desea agregar
+                ArrayList<Pair> valueToAdd = new ArrayList<>();
+                dataManager.addData(new Pair(dataToAdd, valueToAdd));
                 break;
             case 1:
                 dataAnalyzer.analyzeData(dataManager.getData());
