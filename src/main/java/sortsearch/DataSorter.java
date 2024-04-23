@@ -6,6 +6,14 @@ import java.util.List;
 
 public class DataSorter {
     public void sortData(List<Pair> data) {
-        Collections.sort(data, (Pair p1, Pair p2) -> p1.getKey().compareTo(p2.getKey()));
+        Collections.sort(data, (Pair p1, Pair p2) -> {
+            if (p1.getKey() instanceof String && p2.getKey() instanceof String) {
+                return ((String) p1.getKey()).compareTo((String) p2.getKey());
+            } else if (p1.getKey() instanceof Integer && p2.getKey() instanceof Integer) {
+                return ((Integer) p1.getKey()).compareTo((Integer) p2.getKey());
+            } else {
+                return 0;
+            }
+        });
     }
 }
