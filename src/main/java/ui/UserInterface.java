@@ -37,7 +37,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Salir"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Buscar nombre", "Salir"};
         int selection = JOptionPane.showOptionDialog(null, "Elige una opción", "Menú",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
@@ -65,6 +65,27 @@ public class UserInterface {
                 }
                 break;
             case 3:
+                List<Pair> sortedByPrice = dataAnalyzer.sortSalesByPrice(dataManager.getData());
+                StringBuilder sortedPairsByPrice = new StringBuilder();
+                for (Pair pair : sortedByPrice) {
+                    sortedPairsByPrice.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append("\n");
+                }
+                displayMessage(sortedPairsByPrice.toString());
+                break;
+            case 4:
+                List<Pair> sortedByName = dataAnalyzer.sortSalesByName(dataManager.getData());
+                StringBuilder sortedPairsByName = new StringBuilder();
+                for (Pair pair : sortedByName) {
+                    sortedPairsByName.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append("\n");
+                }
+                displayMessage(sortedPairsByName.toString());
+                break;
+            case 5:
+                String nameToSearch = getInput("Introduce el nombre a buscar:");
+                boolean found = dataManager.searchName(nameToSearch);
+                displayMessage(found ? "El nombre " + nameToSearch + " fue encontrado." : "El nombre " + nameToSearch + " no fue encontrado.");
+                break;
+            case 6:
                 System.exit(0);
                 break;
             default:
