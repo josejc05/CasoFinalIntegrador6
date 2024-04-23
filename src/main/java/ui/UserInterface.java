@@ -54,7 +54,7 @@ public class UserInterface {
     public void showMenu() {
         String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos"};
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Ajusta el layout del panel a BoxLayout con orientación vertical
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         for (int i = 0; i < options.length; i++) {
             JButton button = new JButton(options[i]);
             final int selection = i;
@@ -147,7 +147,8 @@ public class UserInterface {
                         }
                         break;
                     case 12:
-                        fileVisualizer.visualizeFiles();
+                        String filesInfo = fileVisualizer.visualizeFiles();
+                        JOptionPane.showMessageDialog(null, filesInfo);
                         break;
                     default:
                         break;
