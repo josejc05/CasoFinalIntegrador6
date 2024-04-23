@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import management.DataManager;
 import management.DataAnalyzer;
 import model.DataList;
+import model.Pair;
 import retrieval.DataRetriever;
 import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
@@ -41,15 +42,15 @@ public class UserInterface {
         switch (selection) {
             case 0:
                 String dataToAdd = getInput("Introduce los datos a agregar:");
-                dataManager.addData(dataToAdd);
+                dataManager.addData(new Pair(dataToAdd, new ArrayList<>()));
                 break;
             case 1:
                 dataAnalyzer.analyzeData(dataManager.getData());
                 break;
             case 2:
                 int index = Integer.parseInt(getInput("Introduce el índice del dato a recuperar:"));
-                String retrievedData = dataRetriever.retrieveData(dataList.getDataList(), index);
-                displayMessage("Dato recuperado: " + retrievedData);
+                Pair retrievedData = dataRetriever.retrieveData(dataManager.getData(), index);
+                displayMessage("Dato recuperado: " + retrievedData.getKey() + ", Value: " + retrievedData.getValue());
                 break;
             case 3:
                 String dataToSearch = getInput("Introduce el dato a buscar:");
