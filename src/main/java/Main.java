@@ -36,11 +36,11 @@ public class Main {
 
         // Recuperar un dato de DataList
         String retrievedData = dataRetriever.retrieveData(dataList.getDataList(), 0);
-        System.out.println("Dato recuperado: " + retrievedData);
+        userInterface.displayMessage("Dato recuperado: " + retrievedData);
 
         // Buscar un dato en DataManager
         int index = dataSearcher.searchData(dataManager.getData(), "dato1");
-        System.out.println("Índice del dato buscado: " + index);
+        userInterface.displayMessage("Índice del dato buscado: " + index);
 
         // Ordenar los datos en DataManager
         dataSorter.sortData(dataManager.getData());
