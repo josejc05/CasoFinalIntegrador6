@@ -37,7 +37,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Buscar nombre", "Salir"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir"};
         int selection = JOptionPane.showOptionDialog(null, "Elige una opción", "Menú",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
@@ -80,11 +80,19 @@ public class UserInterface {
                 displayMessage(sortedPairsByName.toString());
                 break;
             case 5:
+                List<Pair> sortedByDate = dataAnalyzer.sortSalesByDate(dataManager.getData());
+                StringBuilder sortedPairsByDate = new StringBuilder();
+                for (Pair pair : sortedByDate) {
+                    sortedPairsByDate.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append(", Fecha: ").append(pair.getDate()).append("\n");
+                }
+                displayMessage(sortedPairsByDate.toString());
+                break;
+            case 6:
                 String nameToSearch = getInput("Introduce el nombre a buscar:");
                 boolean found = dataManager.searchName(nameToSearch);
                 displayMessage(found ? "El nombre " + nameToSearch + " fue encontrado." : "El nombre " + nameToSearch + " no fue encontrado.");
                 break;
-            case 6:
+            case 7:
                 System.exit(0);
                 break;
             default:
