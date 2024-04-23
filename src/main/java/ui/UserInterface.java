@@ -1,7 +1,6 @@
 package ui;
 
 import javax.swing.JOptionPane;
-import java.util.Scanner;
 import management.DataManager;
 import management.DataAnalyzer;
 import model.DataList;
@@ -10,7 +9,6 @@ import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
 
 public class UserInterface {
-    private Scanner scanner;
     private DataManager dataManager;
     private DataAnalyzer dataAnalyzer;
     private DataList dataList;
@@ -19,7 +17,6 @@ public class UserInterface {
     private DataSorter dataSorter;
 
     public UserInterface(DataManager dataManager, DataAnalyzer dataAnalyzer, DataList dataList, DataRetriever dataRetriever, DataSearcher dataSearcher, DataSorter dataSorter) {
-        this.scanner = new Scanner(System.in);
         this.dataManager = dataManager;
         this.dataAnalyzer = dataAnalyzer;
         this.dataList = dataList;
@@ -28,12 +25,12 @@ public class UserInterface {
         this.dataSorter = dataSorter;
     }
 
-    public String getInput() {
-        return scanner.nextLine();
+    public String getInput(String message) {
+        return JOptionPane.showInputDialog(null, message);
     }
 
     public void displayMessage(String message) {
-        System.out.println(message);
+        JOptionPane.showMessageDialog(null, message);
     }
 
     public void showMenu() {
@@ -43,28 +40,25 @@ public class UserInterface {
 
         switch (selection) {
             case 0:
-                System.out.println("Introduce los datos a agregar:");
-                String dataToAdd = getInput();
+                String dataToAdd = getInput("Introduce los datos a agregar:");
                 dataManager.addData(dataToAdd);
                 break;
             case 1:
                 dataAnalyzer.analyzeData(dataManager.getData());
                 break;
             case 2:
-                System.out.println("Introduce el índice del dato a recuperar:");
-                int index = Integer.parseInt(getInput());
+                int index = Integer.parseInt(getInput("Introduce el índice del dato a recuperar:"));
                 String retrievedData = dataRetriever.retrieveData(dataList.getDataList(), index);
-                System.out.println("Dato recuperado: " + retrievedData);
+                displayMessage("Dato recuperado: " + retrievedData);
                 break;
             case 3:
-                System.out.println("Introduce el dato a buscar:");
-                String dataToSearch = getInput();
+                String dataToSearch = getInput("Introduce el dato a buscar:");
                 int foundIndex = dataSearcher.searchData(dataManager.getData(), dataToSearch);
-                System.out.println("Índice del dato buscado: " + foundIndex);
+                displayMessage("Índice del dato buscado: " + foundIndex);
                 break;
             case 4:
                 dataSorter.sortData(dataManager.getData());
-                System.out.println("Datos ordenados: " + dataManager.getData());
+                displayMessage("Datos ordenados: " + dataManager.getData());
                 break;
             case 5:
                 System.exit(0);
