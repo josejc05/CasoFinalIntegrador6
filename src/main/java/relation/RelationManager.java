@@ -1,4 +1,4 @@
-package relation;
+package management;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +16,10 @@ public class RelationManager {
 
     public void removeRelation(String key) {
         this.relations.remove(key);
+    }
+
+    public String getRelation(String key) {
+        return this.relations.get(key);
     }
 
     public Map<String, String> getRelations() {

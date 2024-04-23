@@ -5,6 +5,7 @@ import javax.swing.BoxLayout;
 import java.awt.Dimension;
 import management.DataManager;
 import management.DataAnalyzer;
+import management.RelationManager;
 import model.DataList;
 import model.Pair;
 import retrieval.DataRetriever;
@@ -23,14 +24,16 @@ public class UserInterface {
     private DataRetriever dataRetriever;
     private DataSearcher dataSearcher;
     private DataSorter dataSorter;
+    private RelationManager relationManager;
 
-    public UserInterface(DataManager dataManager, DataAnalyzer dataAnalyzer, DataList dataList, DataRetriever dataRetriever, DataSearcher dataSearcher, DataSorter dataSorter) {
+    public UserInterface(DataManager dataManager, DataAnalyzer dataAnalyzer, DataList dataList, DataRetriever dataRetriever, DataSearcher dataSearcher, DataSorter dataSorter, RelationManager relationManager) {
         this.dataManager = dataManager;
         this.dataAnalyzer = dataAnalyzer;
         this.dataList = dataList;
         this.dataRetriever = dataRetriever;
         this.dataSearcher = dataSearcher;
         this.dataSorter = dataSorter;
+        this.relationManager = relationManager;
     }
 
     public String getInput(String message) {
@@ -42,7 +45,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación"};
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Ajusta el layout del panel a BoxLayout con orientación vertical
         for (int i = 0; i < options.length; i++) {
@@ -111,6 +114,20 @@ public class UserInterface {
                         break;
                     case 7:
                         System.exit(0);
+                        break;
+                    case 8:
+                        String keyToAddRelation = getInput("Introduce la clave de la relación a agregar:");
+                        String valueToAddRelation = getInput("Introduce el valor de la relación a agregar:");
+                        relationManager.addRelation(keyToAddRelation, valueToAddRelation);
+                        break;
+                    case 9:
+                        String keyToRemoveRelation = getInput("Introduce la clave de la relación a eliminar:");
+                        relationManager.removeRelation(keyToRemoveRelation);
+                        break;
+                    case 10:
+                        String keyToSearchRelation = getInput("Introduce la clave de la relación a buscar:");
+                        String foundRelation = relationManager.getRelation(keyToSearchRelation);
+                        displayMessage(foundRelation != null ? "La relación para " + keyToSearchRelation + " es " + foundRelation : "No se encontró ninguna relación para " + keyToSearchRelation);
                         break;
                     default:
                         break;
