@@ -17,7 +17,9 @@ public class Main {
         DataSorter dataSorter = new DataSorter();
         UserInterface userInterface = new UserInterface(dataManager, dataAnalyzer, dataList, dataRetriever, dataSearcher, dataSorter);
 
-        // Mostrar el menú al usuario
-        userInterface.showMenu();
+        // Mostrar el menú al usuario en un bucle infinito
+        while (true) {
+            userInterface.showMenu();
+        }
     }
 }
