@@ -21,7 +21,7 @@ public class FileIndexer {
         }
     }
 
-    public String getFilePath(String fileName) {
-        return fileIndex.get(fileName);
+    public Map<String, String> getFileIndex() {
+        return fileIndex;
     }
 }
