@@ -1,10 +1,12 @@
 package model;
 
+import java.util.List;
+
 public class Pair {
     private String key;
-    private String value;
+    private List<Pair> value;
 
-    public Pair(String key, String value) {
+    public Pair(String key, List<Pair> value) {
         this.key = key;
         this.value = value;
     }
@@ -13,7 +15,7 @@ public class Pair {
         return this.key;
     }
 
-    public String getValue() {
+    public List<Pair> getValue() {
         return this.value;
     }
 
@@ -21,7 +23,7 @@ public class Pair {
         this.key = key;
     }
 
-    public void setValue(String value) {
+    public void setValue(List<Pair> value) {
         this.value = value;
     }
 }
