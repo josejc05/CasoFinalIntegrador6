@@ -9,6 +9,9 @@ import retrieval.DataRetriever;
 import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class UserInterface {
@@ -45,12 +48,21 @@ public class UserInterface {
             case 0:
                 String keyToAdd = getInput("Introduce la clave de la pareja a agregar:");
                 Double valueToAdd = Double.valueOf(getInput("Introduce el valor de la pareja a agregar:"));
-                dataManager.addData(new Pair(keyToAdd, valueToAdd));
+                String dateToAddStr = getInput("Introduce la fecha de la venta (formato dd/MM/yyyy):");
+                Date dateToAdd = null;
+                try {
+                    dateToAdd = new SimpleDateFormat("dd/MM/yyyy").parse(dateToAddStr);
+                } catch (ParseException e) {
+                    displayMessage("Fecha inválida. Por favor, introduce la fecha en el formato dd/MM/yyyy.");
+                }
+                if (dateToAdd != null) {
+                    dataManager.addData(new Pair(keyToAdd, valueToAdd, dateToAdd));
+                }
                 break;
             case 1:
                 StringBuilder pairs = new StringBuilder();
                 for (Pair pair : dataManager.getData()) {
-                    pairs.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append("\n");
+                    pairs.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append(", Fecha: ").append(pair.getDate()).append("\n");
                 }
                 displayMessage(pairs.toString());
                 break;
@@ -67,7 +79,7 @@ public class UserInterface {
                 List<Pair> sortedByPrice = dataAnalyzer.sortSalesByPrice(dataManager.getData());
                 StringBuilder sortedPairsByPrice = new StringBuilder();
                 for (Pair pair : sortedByPrice) {
-                    sortedPairsByPrice.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append("\n");
+                    sortedPairsByPrice.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append(", Fecha: ").append(pair.getDate()).append("\n");
                 }
                 displayMessage(sortedPairsByPrice.toString());
                 break;
@@ -75,7 +87,7 @@ public class UserInterface {
                 List<Pair> sortedByName = dataAnalyzer.sortSalesByName(dataManager.getData());
                 StringBuilder sortedPairsByName = new StringBuilder();
                 for (Pair pair : sortedByName) {
-                    sortedPairsByName.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append("\n");
+                    sortedPairsByName.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append(", Fecha: ").append(pair.getDate()).append("\n");
                 }
                 displayMessage(sortedPairsByName.toString());
                 break;
