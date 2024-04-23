@@ -6,12 +6,15 @@ import java.awt.Dimension;
 import management.DataManager;
 import management.DataAnalyzer;
 import management.RelationManager;
+import indexing.FileIndexer;
+import indexing.FileVisualizer;
 import model.DataList;
 import model.Pair;
 import retrieval.DataRetriever;
 import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
 
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -25,8 +28,10 @@ public class UserInterface {
     private DataSearcher dataSearcher;
     private DataSorter dataSorter;
     private RelationManager relationManager;
+    private FileIndexer fileIndexer;
+    private FileVisualizer fileVisualizer;
 
-    public UserInterface(DataManager dataManager, DataAnalyzer dataAnalyzer, DataList dataList, DataRetriever dataRetriever, DataSearcher dataSearcher, DataSorter dataSorter, RelationManager relationManager) {
+    public UserInterface(DataManager dataManager, DataAnalyzer dataAnalyzer, DataList dataList, DataRetriever dataRetriever, DataSearcher dataSearcher, DataSorter dataSorter, RelationManager relationManager, FileIndexer fileIndexer, FileVisualizer fileVisualizer) {
         this.dataManager = dataManager;
         this.dataAnalyzer = dataAnalyzer;
         this.dataList = dataList;
@@ -34,6 +39,8 @@ public class UserInterface {
         this.dataSearcher = dataSearcher;
         this.dataSorter = dataSorter;
         this.relationManager = relationManager;
+        this.fileIndexer = fileIndexer;
+        this.fileVisualizer = fileVisualizer;
     }
 
     public String getInput(String message) {
@@ -45,7 +52,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos"};
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS)); // Ajusta el layout del panel a BoxLayout con orientación vertical
         for (int i = 0; i < options.length; i++) {
@@ -128,6 +135,19 @@ public class UserInterface {
                         String keyToSearchRelation = getInput("Introduce la clave de la relación a buscar:");
                         String foundRelation = relationManager.getRelation(keyToSearchRelation);
                         displayMessage(foundRelation != null ? "La relación para " + keyToSearchRelation + " es " + foundRelation : "No se encontró ninguna relación para " + keyToSearchRelation);
+                        break;
+                    case 11:
+                        String directoryPath = getInput("Introduce la ruta del directorio a indexar:");
+                        File directory = new File(directoryPath);
+                        if (directory.exists() && directory.isDirectory()) {
+                            fileIndexer.indexFiles(directory);
+                            displayMessage("Los archivos han sido indexados correctamente.");
+                        } else {
+                            displayMessage("La ruta proporcionada no es un directorio válido.");
+                        }
+                        break;
+                    case 12:
+                        fileVisualizer.visualizeFiles();
                         break;
                     default:
                         break;
