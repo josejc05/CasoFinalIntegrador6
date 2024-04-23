@@ -16,12 +16,12 @@ public class DataManager {
 
     public void addData(Pair datum) {
         this.data.add(datum);
-        this.sortedNames.add(datum.getKey().toString());
+        this.sortedNames.add(datum.getKey());
     }
 
     public void removeData(Pair datum) {
         this.data.remove(datum);
-        this.sortedNames.remove(datum.getKey().toString());
+        this.sortedNames.remove(datum.getKey());
     }
 
     public List<Pair> getData() {
