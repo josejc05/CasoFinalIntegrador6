@@ -1,6 +1,6 @@
 package indexing;
 
-import indexing.FileIndexer;
+import java.util.List;
 import java.util.Map;
 
 public class FileVisualizer {
@@ -11,8 +11,10 @@ public class FileVisualizer {
     }
 
     public void visualizeFiles() {
-        for (Map.Entry<String, String> entry : fileIndexer.getFileIndex().entrySet()) {
-            System.out.println("File: " + entry.getKey() + ", Path: " + entry.getValue());
+        Map<String, String> fileIndex = fileIndexer.getFileIndex();
+        List<String> sortedFiles = fileIndex.keySet().stream().sorted().collect(Collectors.toList());
+        for (String fileName : sortedFiles) {
+            System.out.println("File: " + fileName + ", Path: " + fileIndex.get(fileName));
         }
     }
 }
