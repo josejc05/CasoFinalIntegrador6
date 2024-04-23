@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 public class DataAnalyzer {
     public List<Pair> sortSalesByPrice(List<Pair> data) {
         return data.stream()
-                .sorted(Comparator.comparing(pair -> (Double) pair.getValue()))
+                .sorted(Comparator.comparing(Pair::getValue))
                 .collect(Collectors.toList());
     }
 
     public List<Pair> sortSalesByName(List<Pair> data) {
         return data.stream()
-                .sorted(Comparator.comparing(pair -> (String) pair.getKey()))
+                .sorted(Comparator.comparing(Pair::getKey))
                 .collect(Collectors.toList());
     }
 
