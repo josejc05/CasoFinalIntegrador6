@@ -16,7 +16,7 @@ public class FileVisualizer {
         List<String> sortedFiles = fileIndex.keySet().stream().sorted().collect(Collectors.toList());
         StringBuilder filesInfo = new StringBuilder();
         for (String fileName : sortedFiles) {
-            filesInfo.append("File: ").append(fileName).append(", Path: ").append(fileIndex.get(fileName)).append("\n");
+            filesInfo.append("File: ").append(fileName).append(", Full Path: ").append(fileIndex.get(fileName)).append("\n");
         }
         return filesInfo.toString();
     }
