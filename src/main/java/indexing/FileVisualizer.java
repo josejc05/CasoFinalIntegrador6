@@ -11,11 +11,13 @@ public class FileVisualizer {
         this.fileIndexer = fileIndexer;
     }
 
-    public void visualizeFiles() {
+    public String visualizeFiles() {
         Map<String, String> fileIndex = fileIndexer.getFileIndex();
         List<String> sortedFiles = fileIndex.keySet().stream().sorted().collect(Collectors.toList());
+        StringBuilder filesInfo = new StringBuilder();
         for (String fileName : sortedFiles) {
-            System.out.println("File: " + fileName + ", Path: " + fileIndex.get(fileName));
+            filesInfo.append("File: ").append(fileName).append(", Path: ").append(fileIndex.get(fileName)).append("\n");
         }
+        return filesInfo.toString();
     }
 }
