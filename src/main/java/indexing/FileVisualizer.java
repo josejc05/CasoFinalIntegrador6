@@ -13,10 +13,12 @@ public class FileVisualizer {
 
     public String visualizeFiles() {
         Map<String, String> fileIndex = fileIndexer.getFileIndex();
-        List<String> sortedFiles = fileIndex.keySet().stream().sorted().collect(Collectors.toList());
+        List<Map.Entry<String, String>> sortedEntries = fileIndex.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue())
+                .collect(Collectors.toList());
         StringBuilder filesInfo = new StringBuilder();
-        for (String fileName : sortedFiles) {
-            filesInfo.append("File: ").append(fileName).append(", Full Path: ").append(fileIndex.get(fileName)).append("\n");
+        for (Map.Entry<String, String> entry : sortedEntries) {
+            filesInfo.append("File: ").append(entry.getKey()).append(", Full Path: ").append(entry.getValue()).append("\n");
         }
         return filesInfo.toString();
     }
