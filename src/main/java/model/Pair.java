@@ -1,29 +1,27 @@
 package model;
 
-import java.util.List;
-
 public class Pair {
-    private Object key;
-    private List<Pair> value;
+    private String key;
+    private Double value;
 
-    public Pair(Object key, List<Pair> value) {
+    public Pair(String key, Double value) {
         this.key = key;
         this.value = value;
     }
 
-    public Object getKey() {
+    public String getKey() {
         return this.key;
     }
 
-    public List<Pair> getValue() {
+    public Double getValue() {
         return this.value;
     }
 
-    public void setKey(Object key) {
+    public void setKey(String key) {
         this.key = key;
     }
 
-    public void setValue(List<Pair> value) {
+    public void setValue(Double value) {
         this.value = value;
     }
 }
