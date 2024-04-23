@@ -10,6 +10,7 @@ import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserInterface {
     private DataManager dataManager;
