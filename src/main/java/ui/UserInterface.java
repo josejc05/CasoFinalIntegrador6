@@ -52,7 +52,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos", "Ordenar archivos"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos", "Archivos ordenados alfabéticamente"};
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         for (int i = 0; i < options.length; i++) {
