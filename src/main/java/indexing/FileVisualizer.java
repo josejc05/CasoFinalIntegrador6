@@ -1,6 +1,6 @@
 package indexing;
 
-import file.FileIndexer;
+import indexing.FileIndexer;
 import java.util.Map;
 
 public class FileVisualizer {
