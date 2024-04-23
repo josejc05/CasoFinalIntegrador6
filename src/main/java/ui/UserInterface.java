@@ -37,7 +37,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Analizar datos", "Recuperar datos", "Buscar datos", "Ordenar datos", "Salir"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Salir"};
         int selection = JOptionPane.showOptionDialog(null, "Elige una opción", "Menú",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
@@ -56,28 +56,15 @@ public class UserInterface {
                 displayMessage(pairs.toString());
                 break;
             case 2:
-                String keyToRemove = getInput("Introduce la clave de la pareja a eliminar:");
-                ArrayList<Pair> valueToRemove = new ArrayList<>();
-                dataManager.removeData(new Pair(keyToRemove, valueToRemove));
+                String[] pairKeys = dataManager.getData().stream().map(pair -> pair.getKey().toString()).toArray(String[]::new);
+                String keyToRemove = (String) JOptionPane.showInputDialog(null, "Selecciona la pareja a eliminar:", "Eliminar pareja",
+                        JOptionPane.QUESTION_MESSAGE, null, pairKeys, pairKeys[0]);
+                Pair pairToRemove = dataManager.getData().stream().filter(pair -> pair.getKey().toString().equals(keyToRemove)).findFirst().orElse(null);
+                if (pairToRemove != null) {
+                    dataManager.removeData(pairToRemove);
+                }
                 break;
             case 3:
-                dataAnalyzer.analyzeData(dataManager.getData());
-                break;
-            case 4:
-                int index = Integer.parseInt(getInput("Introduce el índice del dato a recuperar:"));
-                Pair retrievedData = dataRetriever.retrieveData(dataManager.getData(), index);
-                displayMessage("Dato recuperado: " + retrievedData.getKey() + ", Value: " + retrievedData.getValue());
-                break;
-            case 5:
-                String dataToSearch = getInput("Introduce el dato a buscar:");
-                int foundIndex = dataSearcher.searchData(dataManager.getData(), dataToSearch);
-                displayMessage("Índice del dato buscado: " + foundIndex);
-                break;
-            case 6:
-                dataSorter.sortData(dataManager.getData());
-                displayMessage("Datos ordenados: " + dataManager.getData());
-                break;
-            case 7:
                 System.exit(0);
                 break;
             default:
