@@ -2,6 +2,7 @@ package ui;
 
 import javax.swing.*;
 import javax.swing.BoxLayout;
+import java.awt.*;
 import java.awt.Dimension;
 import management.DataManager;
 import management.DataAnalyzer;
@@ -52,11 +53,15 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos", "Archivos ordenados alfabéticamente"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos", "Archivos ordenados alfabéticamente"};
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setPreferredSize(new Dimension(400, 600)); // Ajusta el tamaño del panel
+        panel.setBackground(Color.LIGHT_GRAY); // Cambia el color de fondo del panel
+
         for (int i = 0; i < options.length; i++) {
             JButton button = new JButton(options[i]);
+            button.setBackground(Color.CYAN); // Cambia el color de los botones
             final int selection = i;
             button.addActionListener(e -> {
                 switch (selection) {
@@ -160,6 +165,15 @@ public class UserInterface {
             });
             panel.add(button);
         }
+
+        // Añade un espacio antes del botón de "Salir"
+        panel.add(Box.createRigidArea(new Dimension(0, 20)));
+
+        JButton exitButton = new JButton("Salir");
+        exitButton.setBackground(Color.RED); // Cambia el color del botón de "Salir"
+        exitButton.addActionListener(e -> System.exit(0));
+        panel.add(exitButton);
+
         JOptionPane.showOptionDialog(null, panel, "Menú",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
     }
