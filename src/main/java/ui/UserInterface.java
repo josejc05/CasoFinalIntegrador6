@@ -1,6 +1,7 @@
 package ui;
 
 import javax.swing.*;
+import java.awt.Dimension;
 import management.DataManager;
 import management.DataAnalyzer;
 import model.DataList;
