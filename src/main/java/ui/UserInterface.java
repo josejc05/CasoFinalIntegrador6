@@ -52,7 +52,7 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir", "Agregar relación", "Eliminar relación", "Buscar relación", "Indexar archivos", "Visualizar archivos", "Ordenar archivos"};
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         for (int i = 0; i < options.length; i++) {
@@ -149,6 +149,10 @@ public class UserInterface {
                     case 12:
                         String filesInfo = fileVisualizer.visualizeFiles();
                         JOptionPane.showMessageDialog(null, filesInfo);
+                        break;
+                    case 13:
+                        String sortedFilesInfo = fileVisualizer.visualizeFilesSorted();
+                        JOptionPane.showMessageDialog(null, sortedFilesInfo);
                         break;
                     default:
                         break;
