@@ -1,6 +1,7 @@
 import management.DataManager;
 import management.DataAnalyzer;
 import model.DataList;
+import model.Pair;
 import retrieval.DataRetriever;
 import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
