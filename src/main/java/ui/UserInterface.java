@@ -37,46 +37,30 @@ public class UserInterface {
     }
 
     public void showMenu() {
-        String[] options = {"Agregar datos", "Modificar datos", "Eliminar datos", "Analizar datos", "Recuperar datos", "Buscar datos", "Ordenar datos", "Salir"};
+        String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Salir"};
         int selection = JOptionPane.showOptionDialog(null, "Elige una opción", "Menú",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
         switch (selection) {
             case 0:
-                String dataToAdd = getInput("Introduce los datos a agregar:");
-                ArrayList<Pair> valueToAdd = new ArrayList<>();
-                dataManager.addData(new Pair(dataToAdd, valueToAdd));
+                String keyToAdd = getInput("Introduce la clave de la pareja a agregar:");
+                String valueToAdd = getInput("Introduce el valor de la pareja a agregar:");
+                ArrayList<Pair> valueList = new ArrayList<>();
+                dataManager.addData(new Pair(keyToAdd, valueList));
                 break;
             case 1:
-                String dataToModify = getInput("Introduce los datos a modificar:");
-                ArrayList<Pair> valueToModify = new ArrayList<>();
-                dataManager.removeData(new Pair(dataToModify, valueToModify));
-                String newData = getInput("Introduce los nuevos datos:");
-                dataManager.addData(new Pair(newData, valueToModify));
+                StringBuilder pairs = new StringBuilder();
+                for (Pair pair : dataManager.getData()) {
+                    pairs.append("Clave: ").append(pair.getKey()).append(", Valor: ").append(pair.getValue()).append("\n");
+                }
+                displayMessage(pairs.toString());
                 break;
             case 2:
-                String dataToRemove = getInput("Introduce los datos a eliminar:");
+                String keyToRemove = getInput("Introduce la clave de la pareja a eliminar:");
                 ArrayList<Pair> valueToRemove = new ArrayList<>();
-                dataManager.removeData(new Pair(dataToRemove, valueToRemove));
+                dataManager.removeData(new Pair(keyToRemove, valueToRemove));
                 break;
             case 3:
-                dataAnalyzer.analyzeData(dataManager.getData());
-                break;
-            case 4:
-                int index = Integer.parseInt(getInput("Introduce el índice del dato a recuperar:"));
-                Pair retrievedData = dataRetriever.retrieveData(dataManager.getData(), index);
-                displayMessage("Dato recuperado: " + retrievedData.getKey() + ", Value: " + retrievedData.getValue());
-                break;
-            case 5:
-                String dataToSearch = getInput("Introduce el dato a buscar:");
-                int foundIndex = dataSearcher.searchData(dataManager.getData(), dataToSearch);
-                displayMessage("Índice del dato buscado: " + foundIndex);
-                break;
-            case 6:
-                dataSorter.sortData(dataManager.getData());
-                displayMessage("Datos ordenados: " + dataManager.getData());
-                break;
-            case 7:
                 System.exit(0);
                 break;
             default:
