@@ -1,5 +1,6 @@
 import management.DataManager;
 import management.DataAnalyzer;
+import management.RelationManager;
 import model.DataList;
 import model.Pair;
 import retrieval.DataRetriever;
@@ -15,7 +16,8 @@ public class Main {
         DataRetriever dataRetriever = new DataRetriever();
         DataSearcher dataSearcher = new DataSearcher();
         DataSorter dataSorter = new DataSorter();
-        UserInterface userInterface = new UserInterface(dataManager, dataAnalyzer, dataList, dataRetriever, dataSearcher, dataSorter);
+        RelationManager relationManager = new RelationManager();
+        UserInterface userInterface = new UserInterface(dataManager, dataAnalyzer, dataList, dataRetriever, dataSearcher, dataSorter, relationManager);
 
         // Mostrar el menú al usuario en un bucle infinito
         while (true) {
