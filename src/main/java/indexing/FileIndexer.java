@@ -1,8 +1,6 @@
-package indexing;
+package file;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,20 +8,20 @@ public class FileIndexer {
     private Map<String, String> fileIndex;
 
     public FileIndexer() {
-        fileIndex = new HashMap<>();
+        this.fileIndex = new HashMap<>();
     }
 
-    public void indexFiles(String directoryPath) throws IOException {
-        Files.walk(Paths.get(directoryPath))
-                .filter(Files::isRegularFile)
-                .forEach(file -> fileIndex.put(file.getFileName().toString(), file.toString()));
+    public void indexFiles(File directory) {
+        for (File file : directory.listFiles()) {
+            if (file.isDirectory()) {
+                indexFiles(file);
+            } else {
+                fileIndex.put(file.getName(), file.getPath());
+            }
+        }
     }
 
     public String getFilePath(String fileName) {
         return fileIndex.get(fileName);
-    }
-
-    public Map<String, String> getFileIndex() {
-        return fileIndex;
     }
 }
