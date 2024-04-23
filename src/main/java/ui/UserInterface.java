@@ -9,7 +9,6 @@ import retrieval.DataRetriever;
 import sortsearch.DataSearcher;
 import sortsearch.DataSorter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class UserInterface {
@@ -45,9 +44,8 @@ public class UserInterface {
         switch (selection) {
             case 0:
                 String keyToAdd = getInput("Introduce la clave de la pareja a agregar:");
-                String valueToAdd = getInput("Introduce el valor de la pareja a agregar:");
-                ArrayList<Pair> valueList = new ArrayList<>();
-                dataManager.addData(new Pair(keyToAdd, valueList));
+                Double valueToAdd = Double.valueOf(getInput("Introduce el valor de la pareja a agregar:"));
+                dataManager.addData(new Pair(keyToAdd, valueToAdd));
                 break;
             case 1:
                 StringBuilder pairs = new StringBuilder();
