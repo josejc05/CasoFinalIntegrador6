@@ -43,7 +43,7 @@ public class UserInterface {
     public void showMenu() {
         String[] options = {"Agregar pareja", "Ver parejas", "Eliminar pareja", "Ordenar ventas por precio", "Ordenar ventas por nombre", "Ordenar ventas por fecha", "Buscar nombre", "Salir"};
         JPanel panel = new JPanel();
-        panel.setPreferredSize(new Dimension(200, 200)); // Ajusta el tamaño del panel a 200x200 pixels
+        panel.setPreferredSize(new Dimension(400, 400)); // Ajusta el tamaño del panel a 400x400 pixels
         int selection = JOptionPane.showOptionDialog(panel, "Elige una opción", "Menú",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
 
